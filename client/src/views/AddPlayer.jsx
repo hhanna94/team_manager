@@ -23,7 +23,7 @@ const AddPlayer = (props) => {
     const createPlayer = e => {
         e.preventDefault();
         axios.post('http://localhost:8000/api/players', formInfo)
-            .then( () => addToDom({...formInfo, status: "undecided"}))
+            .then( res => addToDom(res.data))
             .then( () => history.push("/players/list"))
             .catch(err => {
                 console.log(err)

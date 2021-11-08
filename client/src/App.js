@@ -10,6 +10,7 @@ import React, {useState, useEffect} from 'react';
 
 function App() {
   const [players, setPlayers] = useState([])
+  
   useEffect( () => {
     axios.get("http://localhost:8000/api/players")
         .then(res => setPlayers(res.data))
@@ -25,8 +26,8 @@ function App() {
     setPlayers(players.filter(player => player._id !== playerID))
   }
 
-  const updateDom = (i=players.length-1,status) => {
-    setPlayers([...players.slice(0, i), {...players[i], status: status}, ...players.slice(i+1)])
+  const updateDom = (i=players.length-1, newPlayer) => {
+    setPlayers([...players.slice(0, i), newPlayer, ...players.slice(i+1)])
   }
 
   return (
